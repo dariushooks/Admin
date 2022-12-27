@@ -101,6 +101,9 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
         emptyGroup = view.findViewById(R.id.empty_lists)
         searchGroup = view.findViewById(R.id.search_lists)
 
+        //VIEWS FOR EMPTY LISTS
+        ///////////////////////
+        ///////////////////////
         emptyAdminView = view.findViewById(R.id.admin_empty)
         emptyAdminHeader = emptyAdminView.findViewById(R.id.title_header)
         emptyAdminHeader.text = getString(R.string.admin_header)
@@ -119,33 +122,42 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
         emptyCoachMessage = emptyCoachView.findViewById(R.id.empty_list)
         emptyCoachMessage.text = getString(R.string.no_coaches)
 
+        //VIEWS FOR POPULATED LISTS
+        ///////////////////////////
+        ///////////////////////////
         adminRecyclerView = view.findViewById(R.id.admin_list)
         adminRecyclerView.layoutManager = LinearLayoutManager(context)
         adminRecyclerView.adapter = AdminAdapter(admins)
         //(adminRecyclerView.adapter as AdminAdapter).registerAdapterDataObserver(EmptyDataObserver(adminRecyclerView, emptyAdminView))
-
-        searchAdminRecyclerView = view.findViewById(R.id.search_admin_list)
-        searchAdminRecyclerView.layoutManager = LinearLayoutManager(context)
-        searchAdminRecyclerView.adapter = SearchAdminAdapter(searchAdmins)
 
         moderatorRecyclerView = view.findViewById(R.id.moderator_list)
         moderatorRecyclerView.layoutManager = LinearLayoutManager(context)
         moderatorRecyclerView.adapter = AdminAdapter(moderators)
         //(moderatorRecyclerView.adapter as AdminAdapter).registerAdapterDataObserver(EmptyDataObserver(moderatorRecyclerView, emptyModeratorView))
 
-        searchModeratorRecyclerView = view.findViewById(R.id.search_moderator_list)
-        searchModeratorRecyclerView.layoutManager = LinearLayoutManager(context)
-        searchModeratorRecyclerView.adapter = SearchAdminAdapter(searchModerators)
-
         coachRecyclerView = view.findViewById(R.id.coach_list)
         coachRecyclerView.layoutManager = LinearLayoutManager(context)
         coachRecyclerView.adapter = AdminAdapter(coaches)
         //(coachRecyclerView.adapter as AdminAdapter).registerAdapterDataObserver(EmptyDataObserver(coachRecyclerView, emptyCoachView))
 
+        //VIEWS FOR SEARCH QUERIES
+        //////////////////////////
+        //////////////////////////
+        searchAdminRecyclerView = view.findViewById(R.id.search_admin_list)
+        searchAdminRecyclerView.layoutManager = LinearLayoutManager(context)
+        searchAdminRecyclerView.adapter = SearchAdminAdapter(searchAdmins)
+
+        searchModeratorRecyclerView = view.findViewById(R.id.search_moderator_list)
+        searchModeratorRecyclerView.layoutManager = LinearLayoutManager(context)
+        searchModeratorRecyclerView.adapter = SearchAdminAdapter(searchModerators)
+
         searchCoachRecyclerView = view.findViewById(R.id.search_coach_list)
         searchCoachRecyclerView.layoutManager = LinearLayoutManager(context)
         searchCoachRecyclerView.adapter = SearchAdminAdapter(searchCoaches)
 
+        //VIEWMODEL FOR DATA
+        ////////////////////
+        ////////////////////
         adminViewModel.getAdmins().observe(viewLifecycleOwner){
             adminShimmer.stopShimmer()
             adminShimmer.isVisible = false
