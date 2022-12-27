@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_admin">
+
+    <fragment
+        android:id="@+id/fragment_admin"
+        android:label="Admin"
+        android:name="com.rookieandroid.admin.fragments.AdminFragment"
+        tools:layout="@layout/fragment_admin"/>
+
+    <fragment
+        android:id="@+id/fragment_banned"
+        android:label="Banned"
+        android:name="com.rookieandroid.admin.fragments.BannedFragment"
+        tools:layout="@layout/fragment_banned"/>
+
+    <fragment
+        android:id="@+id/fragment_chat"
+        android:label="Chat"
+        android:name="com.rookieandroid.admin.fragments.ChatFragment"
+        tools:layout="@layout/fragment_chat"/>
+
+    <fragment
+        android:id="@+id/fragment_pending"
+        android:label="Pending"
+        android:name="com.rookieandroid.admin.fragments.PendingFragment"
+        tools:layout="@layout/fragment_pending"/>
+
+</navigation>

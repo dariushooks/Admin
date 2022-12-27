@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Admin</string>
+    <string name="bottom_nav_admin">ADMIN</string>
+    <string name="bottom_nav_banned">BANNED</string>
+    <string name="bottom_nav_chat">CHAT</string>
+    <string name="bottom_nav_pending">PENDING</string>
+    <string name="manage_admins">Manage Admins</string>
+    <string name="admin_header">Admins</string>
+    <string name="moderator_header">Moderators</string>
+    <string name="coach_header">Coaches</string>
+    <string name="cancel">CANCEL</string>
+    <string name="admin_since">Admin since</string>
+    <string name="name">Name</string>
+    <string name="no_coaches">No Coaches</string>
+    <string name="no_admins">No Admins</string>
+    <string name="no_moderators">No Moderators</string>
+    <string name="no_results">No Results</string>
+</resources>
