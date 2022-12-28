@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.rookieandroid.admin.Admin
-import com.rookieandroid.admin.App.Companion.TYPE_HEADER
+import com.rookieandroid.admin.App.Companion.TYPE_SEARCH
 import com.rookieandroid.admin.R
 import com.rookieandroid.admin.adapters.AdminAdapter
-import com.rookieandroid.admin.adapters.EmptyDataObserver
-import com.rookieandroid.admin.adapters.SearchAdminAdapter
 import com.rookieandroid.admin.architecture.AdminViewModel
 
 class AdminFragment : Fragment(R.layout.fragment_admin)
@@ -69,6 +67,9 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 submitQuery(query)
+                searchAdminRecyclerView.isVisible = searchAdmins.isNotEmpty()
+                searchModeratorRecyclerView.isVisible = searchModerators.isNotEmpty()
+                searchCoachRecyclerView.isVisible = searchCoaches.isNotEmpty()
                 if(searchAdmins.isEmpty() && searchModerators.isEmpty() && searchCoaches.isEmpty())
                     noResults.isVisible = true
                 return false
@@ -128,32 +129,29 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
         adminRecyclerView = view.findViewById(R.id.admin_list)
         adminRecyclerView.layoutManager = LinearLayoutManager(context)
         adminRecyclerView.adapter = AdminAdapter(admins)
-        //(adminRecyclerView.adapter as AdminAdapter).registerAdapterDataObserver(EmptyDataObserver(adminRecyclerView, emptyAdminView))
 
         moderatorRecyclerView = view.findViewById(R.id.moderator_list)
         moderatorRecyclerView.layoutManager = LinearLayoutManager(context)
         moderatorRecyclerView.adapter = AdminAdapter(moderators)
-        //(moderatorRecyclerView.adapter as AdminAdapter).registerAdapterDataObserver(EmptyDataObserver(moderatorRecyclerView, emptyModeratorView))
 
         coachRecyclerView = view.findViewById(R.id.coach_list)
         coachRecyclerView.layoutManager = LinearLayoutManager(context)
         coachRecyclerView.adapter = AdminAdapter(coaches)
-        //(coachRecyclerView.adapter as AdminAdapter).registerAdapterDataObserver(EmptyDataObserver(coachRecyclerView, emptyCoachView))
 
         //VIEWS FOR SEARCH QUERIES
         //////////////////////////
         //////////////////////////
         searchAdminRecyclerView = view.findViewById(R.id.search_admin_list)
         searchAdminRecyclerView.layoutManager = LinearLayoutManager(context)
-        searchAdminRecyclerView.adapter = SearchAdminAdapter(searchAdmins)
+        searchAdminRecyclerView.adapter = AdminAdapter(searchAdmins)
 
         searchModeratorRecyclerView = view.findViewById(R.id.search_moderator_list)
         searchModeratorRecyclerView.layoutManager = LinearLayoutManager(context)
-        searchModeratorRecyclerView.adapter = SearchAdminAdapter(searchModerators)
+        searchModeratorRecyclerView.adapter = AdminAdapter(searchModerators)
 
         searchCoachRecyclerView = view.findViewById(R.id.search_coach_list)
         searchCoachRecyclerView.layoutManager = LinearLayoutManager(context)
-        searchCoachRecyclerView.adapter = SearchAdminAdapter(searchCoaches)
+        searchCoachRecyclerView.adapter = AdminAdapter(searchCoaches)
 
         //VIEWMODEL FOR DATA
         ////////////////////
@@ -198,8 +196,8 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
 
         if(searchAdmins.size > 0)
         {
-            searchAdmins.add(0, Admin("Admins", "", TYPE_HEADER))
-            (searchAdminRecyclerView.adapter as SearchAdminAdapter).notifyDataSetChanged()
+            searchAdmins.add(0, Admin("Admins", "", 0, TYPE_SEARCH))
+            (searchAdminRecyclerView.adapter as AdminAdapter).notifyDataSetChanged()
         }
 
         searchModerators.clear()
@@ -212,8 +210,8 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
 
         if(searchModerators.size > 0)
         {
-            searchModerators.add(0, Admin("Moderators", "", TYPE_HEADER))
-            (searchModeratorRecyclerView.adapter as SearchAdminAdapter).notifyDataSetChanged()
+            searchModerators.add(0, Admin("Moderators", "", 0, TYPE_SEARCH))
+            (searchModeratorRecyclerView.adapter as AdminAdapter).notifyDataSetChanged()
         }
 
         searchCoaches.clear()
@@ -226,8 +224,8 @@ class AdminFragment : Fragment(R.layout.fragment_admin)
 
         if(searchCoaches.size > 0)
         {
-            searchCoaches.add(0, Admin("Coaches", "", TYPE_HEADER))
-            (searchCoachRecyclerView.adapter as SearchAdminAdapter).notifyDataSetChanged()
+            searchCoaches.add(0, Admin("Coaches", "", 0, TYPE_SEARCH))
+            (searchCoachRecyclerView.adapter as AdminAdapter).notifyDataSetChanged()
         }
     }
 }

@@ -10,20 +10,32 @@
         android:id="@+id/title_manage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="@string/manage_admins"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_pure_match"
+        app:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_manage"
+        app:layout_constraintBottom_toBottomOf="@id/title_manage"/>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@color/darker_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +68,7 @@
                 android:layout_marginEnd="5dp"
                 android:text="@string/cancel"
                 android:textStyle="bold"
-                android:textColor="@color/purple_200"
+                android:textColor="@color/pure_blue"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@id/search"
                 app:layout_constraintEnd_toEndOf="parent"
